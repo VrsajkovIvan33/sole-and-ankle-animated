@@ -85,15 +85,18 @@ const ImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 16px 16px 4px 4px;
 
-  // Remove <img> magic space because its inline
+  // Remove <img> magic space because it's inline
   line-height: 0;
 `;
 
 const Image = styled.img`
   width: 100%;
+  transform: scale(1) translateY(0);
+  transition: transform 500ms;
 
   &:hover {
     transform: scale(1.1) translateY(-4px);
+    transition: transform 200ms;
   }
 `;
 
