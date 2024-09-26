@@ -90,7 +90,8 @@ const ContentWrapper = styled(DialogContent)`
   animation-delay: 200ms;
 
   @media (prefers-reduced-motion: no-preference) {
-    animation: ${slideIn} 300ms;
+    animation: ${slideIn} 400ms;
+    animation-timing-function: cubic-bezier(.17,.67,.4,1);
   }
 `;
 
@@ -102,8 +103,7 @@ const Content = styled.div`
 
   animation: ${fadeIn} 400ms;
   animation-fill-mode: both;
-  animation-delay: 600ms;
-
+  animation-delay: 300ms;
 `;
 
 const CloseButton = styled(UnstyledButton)`
