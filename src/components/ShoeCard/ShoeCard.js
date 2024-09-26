@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components/macro';
+import styled, { keyframes } from 'styled-components/macro';
 
 import { WEIGHTS } from '../../constants';
 import { formatPrice, pluralize, isNewShoe } from '../../utils';
@@ -77,10 +77,6 @@ const Link = styled.a`
 
 const Wrapper = styled.article``;
 
-const ImageAndFlagWrapper = styled.div`
-  position: relative;
-`;
-
 const ImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 16px 16px 4px 4px;
@@ -94,11 +90,6 @@ const Image = styled.img`
   transform: scale(1) translateY(0);
   transition: transform 500ms;
   will-change: transform;
-
-  &:hover {
-    transform: scale(1.1) translateY(-4px);
-    transition: transform 200ms;
-  }
 `;
 
 const Row = styled.div`
@@ -138,6 +129,8 @@ const Flag = styled.div`
   font-weight: ${WEIGHTS.bold};
   color: var(--color-white);
   border-radius: 2px;
+
+  will-change: transform;
 `;
 
 const SaleFlag = styled(Flag)`
@@ -145,6 +138,40 @@ const SaleFlag = styled(Flag)`
 `;
 const NewFlag = styled(Flag)`
   background-color: var(--color-secondary);
+`;
+
+const wiggle = keyframes`
+  0% {
+    transform: translateX(0);
+  }
+  15% {
+    transform: translateX(8px);
+  }
+  30% {
+    transform: translateX(0);
+  }
+  60% {
+    transform: translateX(8px);
+  }
+  100% {
+    transform: translateX(0);
+  }
+`;
+
+const ImageAndFlagWrapper = styled.div`
+  position: relative;
+
+  &:hover ${Image} {
+    transform: scale(1.1) translateY(-4px);
+    transition: transform 200ms;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover ${Flag} {
+      animation: ${wiggle} 1000ms;
+      animation-delay: 500ms;
+    }  
+  }
 `;
 
 export default ShoeCard;
