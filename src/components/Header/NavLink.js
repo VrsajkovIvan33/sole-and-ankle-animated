@@ -21,6 +21,7 @@ const Link = styled.a`
 
     transform: translateY(0);
     transition: transform 200ms;
+    will-change: transform;
 `;
 
 const BoldLink = styled(Link)`
