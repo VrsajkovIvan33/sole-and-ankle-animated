@@ -164,9 +164,11 @@ const ImageAndFlagWrapper = styled.div`
     transition: transform 200ms;
   }
 
-  &:hover ${Flag} {
-    animation: ${wiggle} 1000ms;
-    animation-delay: 500ms;
+  @media (prefers-reduced-motion: no-preference) {
+    &:hover ${Flag} {
+      animation: ${wiggle} 1000ms;
+      animation-delay: 500ms;
+    }  
   }
 `;
 
