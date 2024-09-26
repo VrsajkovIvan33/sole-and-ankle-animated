@@ -93,6 +93,7 @@ const Image = styled.img`
   width: 100%;
   transform: scale(1) translateY(0);
   transition: transform 500ms;
+  will-change: transform;
 
   &:hover {
     transform: scale(1.1) translateY(-4px);
