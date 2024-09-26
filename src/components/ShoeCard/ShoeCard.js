@@ -77,10 +77,6 @@ const Link = styled.a`
 
 const Wrapper = styled.article``;
 
-const ImageAndFlagWrapper = styled.div`
-  position: relative;
-`;
-
 const ImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 16px 16px 4px 4px;
@@ -94,8 +90,12 @@ const Image = styled.img`
   transform: scale(1) translateY(0);
   transition: transform 500ms;
   will-change: transform;
+`;
 
-  &:hover {
+const ImageAndFlagWrapper = styled.div`
+  position: relative;
+
+  &:hover ${Image} {
     transform: scale(1.1) translateY(-4px);
     transition: transform 200ms;
   }
