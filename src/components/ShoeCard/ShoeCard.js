@@ -89,14 +89,24 @@ const Image = styled.img`
   width: 100%;
   transform-origin: 50% 75%;
   transform: scale(1);
-  transition: transform 500ms;
+  filter: brightness(100%);
+  transition: 
+    transform 500ms,
+    filter 700ms;
   will-change: transform;
+
+  @media (hover: hover) {
+    filter: brightness(90%);
+  }
 
   @media (hover: hover) and (prefers-reduced-motion: no-preference) {
     ${Link}:hover &,
     ${Link}:focus & {
       transform: scale(1.1);
-      transition: transform 200ms;
+      filter: brightness(100%);
+      transition: 
+        transform 200ms,
+        filter 400ms;
     }
   }
 `;
