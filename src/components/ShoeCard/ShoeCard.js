@@ -34,15 +34,13 @@ const ShoeCard = ({
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
-        <ImageAndFlagWrapper>
-          <ImageWrapper>
-            <Image alt="" src={imageSrc} />
-          </ImageWrapper>
-          {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
-          {variant === 'new-release' && (
-            <NewFlag>Just released!</NewFlag>
-          )}
-        </ImageAndFlagWrapper>
+        <ImageWrapper>
+          <Image alt="" src={imageSrc} />
+        </ImageWrapper>
+        {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
+        {variant === 'new-release' && (
+          <NewFlag>Just released!</NewFlag>
+        )}
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
@@ -75,9 +73,7 @@ const Link = styled.a`
   color: inherit;
 `;
 
-const Wrapper = styled.article``;
-
-const ImageAndFlagWrapper = styled.div`
+const Wrapper = styled.article`
   position: relative;
 `;
 
