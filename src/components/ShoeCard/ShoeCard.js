@@ -77,6 +77,10 @@ const Link = styled.a`
 
 const Wrapper = styled.article``;
 
+const ImageAndFlagWrapper = styled.div`
+  position: relative;
+`;
+
 const ImageWrapper = styled.div`
   overflow: hidden;
   border-radius: 16px 16px 4px 4px;
@@ -90,6 +94,14 @@ const Image = styled.img`
   transform: scale(1) translateY(0);
   transition: transform 500ms;
   will-change: transform;
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    ${Link}:hover &,
+    ${Link}:focus & {
+      transform: scale(1.1) translateY(-4px);
+      transition: transform 200ms;
+    }
+  }
 `;
 
 const Row = styled.div`
@@ -117,29 +129,6 @@ const SalePrice = styled.span`
   color: var(--color-primary);
 `;
 
-const Flag = styled.div`
-  position: absolute;
-  top: 12px;
-  right: -4px;
-  background: red;
-  height: 32px;
-  line-height: 32px;
-  padding: 0 10px;
-  font-size: ${14 / 18}rem;
-  font-weight: ${WEIGHTS.bold};
-  color: var(--color-white);
-  border-radius: 2px;
-
-  will-change: transform;
-`;
-
-const SaleFlag = styled(Flag)`
-  background-color: var(--color-primary);
-`;
-const NewFlag = styled(Flag)`
-  background-color: var(--color-secondary);
-`;
-
 const wiggle = keyframes`
   0% {
     transform: translateX(0);
@@ -158,20 +147,35 @@ const wiggle = keyframes`
   }
 `;
 
-const ImageAndFlagWrapper = styled.div`
-  position: relative;
+const Flag = styled.div`
+  position: absolute;
+  top: 12px;
+  right: -4px;
+  background: red;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  font-size: ${14 / 18}rem;
+  font-weight: ${WEIGHTS.bold};
+  color: var(--color-white);
+  border-radius: 2px;
 
-  &:hover ${Image} {
-    transform: scale(1.1) translateY(-4px);
-    transition: transform 200ms;
-  }
+  will-change: transform;
 
-  @media (prefers-reduced-motion: no-preference) {
-    &:hover ${Flag} {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    ${Link}:hover &,
+    ${Link}:focus & {
       animation: ${wiggle} 1000ms;
       animation-delay: 500ms;
     }  
   }
+`;
+
+const SaleFlag = styled(Flag)`
+  background-color: var(--color-primary);
+`;
+const NewFlag = styled(Flag)`
+  background-color: var(--color-secondary);
 `;
 
 export default ShoeCard;
