@@ -34,15 +34,13 @@ const ShoeCard = ({
   return (
     <Link href={`/shoe/${slug}`}>
       <Wrapper>
-        <ImageAndFlagWrapper>
-          <ImageWrapper>
-            <Image alt="" src={imageSrc} />
-          </ImageWrapper>
-          {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
-          {variant === 'new-release' && (
-            <NewFlag>Just released!</NewFlag>
-          )}
-        </ImageAndFlagWrapper>
+        <ImageWrapper>
+          <Image alt="" src={imageSrc} />
+        </ImageWrapper>
+        {variant === 'on-sale' && <SaleFlag>Sale</SaleFlag>}
+        {variant === 'new-release' && (
+          <NewFlag>Just released!</NewFlag>
+        )}
         <Spacer size={12} />
         <Row>
           <Name>{name}</Name>
@@ -75,7 +73,9 @@ const Link = styled.a`
   color: inherit;
 `;
 
-const Wrapper = styled.article``;
+const Wrapper = styled.article`
+  position: relative;
+`;
 
 const ImageWrapper = styled.div`
   overflow: hidden;
@@ -87,9 +87,28 @@ const ImageWrapper = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  transform: scale(1) translateY(0);
-  transition: transform 500ms;
+  transform-origin: 50% 75%;
+  transform: scale(1);
+  filter: brightness(100%);
+  transition: 
+    transform 500ms,
+    filter 700ms;
   will-change: transform;
+
+  @media (hover: hover) {
+    filter: brightness(90%);
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    ${Link}:hover &,
+    ${Link}:focus & {
+      transform: scale(1.1);
+      filter: brightness(100%);
+      transition: 
+        transform 200ms,
+        filter 400ms;
+    }
+  }
 `;
 
 const Row = styled.div`
@@ -117,29 +136,6 @@ const SalePrice = styled.span`
   color: var(--color-primary);
 `;
 
-const Flag = styled.div`
-  position: absolute;
-  top: 12px;
-  right: -4px;
-  background: red;
-  height: 32px;
-  line-height: 32px;
-  padding: 0 10px;
-  font-size: ${14 / 18}rem;
-  font-weight: ${WEIGHTS.bold};
-  color: var(--color-white);
-  border-radius: 2px;
-
-  will-change: transform;
-`;
-
-const SaleFlag = styled(Flag)`
-  background-color: var(--color-primary);
-`;
-const NewFlag = styled(Flag)`
-  background-color: var(--color-secondary);
-`;
-
 const wiggle = keyframes`
   0% {
     transform: translateX(0);
@@ -158,20 +154,35 @@ const wiggle = keyframes`
   }
 `;
 
-const ImageAndFlagWrapper = styled.div`
-  position: relative;
+const Flag = styled.div`
+  position: absolute;
+  top: 12px;
+  right: -4px;
+  background: red;
+  height: 32px;
+  line-height: 32px;
+  padding: 0 10px;
+  font-size: ${14 / 18}rem;
+  font-weight: ${WEIGHTS.bold};
+  color: var(--color-white);
+  border-radius: 2px;
 
-  &:hover ${Image} {
-    transform: scale(1.1) translateY(-4px);
-    transition: transform 200ms;
-  }
+  will-change: transform;
 
-  @media (prefers-reduced-motion: no-preference) {
-    &:hover ${Flag} {
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    ${Link}:hover &,
+    ${Link}:focus & {
       animation: ${wiggle} 1000ms;
       animation-delay: 500ms;
     }  
   }
+`;
+
+const SaleFlag = styled(Flag)`
+  background-color: var(--color-primary);
+`;
+const NewFlag = styled(Flag)`
+  background-color: var(--color-secondary);
 `;
 
 export default ShoeCard;
