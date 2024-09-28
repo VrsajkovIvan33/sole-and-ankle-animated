@@ -6,7 +6,7 @@ const NavLink = ({ href, children }) => {
     return (
         <NavlinkWrapper>
             <Link href={href}>{children}</Link>
-            <BoldLink href={href}>{children}</BoldLink>
+            <BoldLink href={href} aria-label='hidden' tabIndex="-1">{children}</BoldLink>
         </NavlinkWrapper>
     );
 }
